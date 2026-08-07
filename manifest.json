@@ -1,0 +1,17 @@
+{
+  "name": "合同会社Dewatrek",
+  "short_name": "Dewatrek",
+  "description": "空いている建物を、使われる建物に戻す。山形県鶴岡市・庄内。",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#16150F",
+  "theme_color": "#16150F",
+  "icons": [
+    { "src": "assets/img/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

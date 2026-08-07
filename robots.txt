@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# 公開先が決まったら、下の行のコメントを外して実際のドメインに直すこと
+# Sitemap: https://example.com/sitemap.xml
