@@ -39,6 +39,9 @@ strong{font-weight:500;background:linear-gradient(transparent 68%, #E3E9E3 68%)}
 
 .shell{max-width:var(--shell);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
 .sp{display:none}
+/* 狭い画面でだけ入る改行。日本語の見出しが単語の途中で割れるのを防ぐ */
+.mb{display:none}
+@media (max-width:480px){ .mb{display:inline} }
 
 .skip{position:absolute;left:-9999px;top:0;z-index:200;background:var(--ink);color:var(--paper);padding:12px 20px}
 .skip:focus{left:0}

@@ -1,12 +1,12 @@
 /* 合同会社Dewatrek — 最小限のService Worker
    目的はオフライン表示とホーム画面アプリ化だけ。凝ったことはしない。
    ★サイトを更新したら CACHE の日付を必ず変えること（変えないと古い画面が出続ける） */
-const CACHE = 'dewatrek-20260807d';
+const CACHE = 'dewatrek-20260807e';
 const ASSETS = [
   './',
   './index.html',
-  './assets/css/style.css?v=20260807d',
-  './assets/js/main.js?v=20260807d',
+  './assets/css/style.css?v=20260807e',
+  './assets/js/main.js?v=20260807e',
   './assets/img/hero-shonai.jpg',
   './assets/img/akiya.jpg',
   './assets/img/koshi.jpg',
