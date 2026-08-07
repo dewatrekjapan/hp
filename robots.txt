@@ -1,5 +1,18 @@
+# ★検索に載せない設定（2026-08-07）
+#
+# あえて Disallow は書いていません。
+# Disallow で締め出すと、検索エンジンはページを読めなくなり、
+# 各ページに書いた noindex を「読むことすらできない」状態になります。
+# その結果、どこかからリンクされると URL だけが検索結果に出ることがあります。
+#
+# 正しいのは「読ませたうえで、載せるなと伝える」やり方です。
+# → クロールは許可し、各ページの <meta name="robots" content="noindex"> で除外します。
+#
+# 検索に載せてよくなったら:
+#   1. index.html / real-estate.html / business.html / web.html の robots 行を消す
+#   2. sitemap.xml のドメインを実際のものに直し、下の Sitemap 行のコメントを外す
+
 User-agent: *
 Allow: /
 
-# 公開先が決まったら、下の行のコメントを外して実際のドメインに直すこと
 # Sitemap: https://example.com/sitemap.xml
