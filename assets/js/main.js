@@ -85,6 +85,34 @@
     if (body) a.href += '&body=' + encodeURIComponent(body);
   });
 
+  /* メールアドレスのコピー。クリップボードAPIが使えない環境でも動くよう二段構え。 */
+  Array.prototype.forEach.call(document.querySelectorAll('.copy'), function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy');
+      var done = function () {
+        var label = btn.textContent;
+        btn.textContent = 'コピーしました';
+        btn.classList.add('done');
+        setTimeout(function () { btn.textContent = label; btn.classList.remove('done'); }, 2000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(fallback);
+      } else {
+        fallback();
+      }
+      function fallback() {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:-1000px';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); done(); } catch (e) { /* 手で選択してもらう */ }
+        document.body.removeChild(ta);
+      }
+    });
+  });
+
   /* スクロールで静かに表示 */
   var items = document.querySelectorAll('.fade');
   if (reduce || !('IntersectionObserver' in window)) {

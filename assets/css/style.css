@@ -294,6 +294,25 @@ strong{font-weight:500;background:linear-gradient(transparent 68%, #E3E9E3 68%)}
 .contact .btn-lg{border-color:rgba(246,244,239,.7);color:var(--paper)}
 .contact .btn-lg:hover{background:var(--paper);color:var(--ink)}
 
+/* メールソフトが無い環境でも行き止まりにならないよう、宛先を必ず文字で出す */
+.mailbox{
+  border:1px solid rgba(255,255,255,.22);padding:clamp(20px,2.4vw,28px);
+  margin-bottom:clamp(28px,3.5vw,40px);
+}
+.mailbox-k{margin:0 0 14px;font-size:12.5px;color:rgba(246,244,239,.65);line-height:1.85}
+.mailbox-a{
+  margin:0;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  font-size:clamp(16px,2vw,21px);letter-spacing:.02em;
+}
+.mailbox-a span{user-select:all;-webkit-user-select:all}
+.copy{
+  font-family:var(--sans);font-size:12.5px;letter-spacing:.04em;cursor:pointer;
+  background:none;color:var(--paper);border:1px solid rgba(246,244,239,.55);
+  border-radius:2px;padding:7px 16px;transition:background .3s var(--ease), color .3s var(--ease);
+}
+.copy:hover{background:var(--paper);color:var(--ink)}
+.copy.done{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+
 /* footer */
 .ftr{background:var(--ink);color:var(--paper);border-top:1px solid rgba(255,255,255,.14)}
 .ftr-in{display:grid;grid-template-columns:1fr auto;gap:20px 40px;padding:40px 0 34px;align-items:center}
