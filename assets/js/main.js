@@ -3,12 +3,18 @@
   'use strict';
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ホーム画面に追加したときにアプリとして開けるようにする（PWA）。
-     file:// で開いたときは登録されない（https か localhost のみ）。 */
-  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-    window.addEventListener('load', function () {
-      navigator.serviceWorker.register('sw.js').catch(function () { /* 失敗しても表示に影響しない */ });
-    });
+  /* 以前入れていたService Worker（オフライン用キャッシュ）を確実に取り除く。
+     これが残っていると、リンクを押しても古い画面が出続ける。
+     ホーム画面に追加したときのアイコンと全画面表示は manifest.json の機能なので影響しない。 */
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(function (regs) {
+      regs.forEach(function (r) { r.unregister(); });
+    }).catch(function () {});
+  }
+  if (window.caches && caches.keys) {
+    caches.keys().then(function (keys) {
+      keys.forEach(function (k) { caches.delete(k); });
+    }).catch(function () {});
   }
 
   var y = document.getElementById('y');
