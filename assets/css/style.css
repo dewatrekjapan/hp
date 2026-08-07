@@ -136,6 +136,8 @@ strong{font-weight:500;background:linear-gradient(transparent 68%, #E3E9E3 68%)}
 @media (max-width:1000px){.pillars3{grid-template-columns:1fr}}
 
 /* ---------- sections ---------- */
+/* 固定ヘッダーの下に見出しが隠れないよう、リンクで飛んだときの余白を確保する */
+section[id]{scroll-margin-top:76px}
 .sec{padding:clamp(72px,10vw,132px) 0}
 .sec-alt{background:var(--paper-2)}
 .secnum{font-size:11.5px;letter-spacing:.2em;color:var(--accent);margin-bottom:18px}

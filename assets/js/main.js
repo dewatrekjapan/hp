@@ -85,6 +85,21 @@
     if (body) a.href += '&body=' + encodeURIComponent(body);
   });
 
+  /* 別ページから #〜 付きで来たとき、画像の読み込みで高さが変わるため
+     ブラウザ任せだと目的の位置に飛べないことがある。読み込み完了後に自分で合わせる。 */
+  if (location.hash && location.hash.length > 1) {
+    window.addEventListener('load', function () {
+      var target = null;
+      try { target = document.querySelector(location.hash); } catch (e) { /* 不正なハッシュは無視 */ }
+      if (target) {
+        var prev = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = 'auto';
+        target.scrollIntoView();
+        document.documentElement.style.scrollBehavior = prev;
+      }
+    });
+  }
+
   /* メールアドレスのコピー。クリップボードAPIが使えない環境でも動くよう二段構え。 */
   Array.prototype.forEach.call(document.querySelectorAll('.copy'), function (btn) {
     btn.addEventListener('click', function () {
