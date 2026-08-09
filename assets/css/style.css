@@ -258,6 +258,9 @@ section[id]{scroll-margin-top:76px}
   border:1px solid var(--line);margin-bottom:clamp(48px,6vw,84px);
 }
 .flow li{background:var(--paper);padding:clamp(22px,2.4vw,30px)}
+.flow-6{grid-template-columns:repeat(3,1fr)}
+@media (max-width:1000px){.flow-6{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:430px){.flow-6{grid-template-columns:1fr}}
 .flow li span{
   display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;
   background:var(--accent);color:var(--paper);font-size:13px;margin-bottom:16px;

@@ -151,7 +151,7 @@
       if (!mail || mail.indexOf('@') < 1) missing.push('ご返信先メールアドレス');
       if (!body) missing.push('ご相談内容');
       if (missing.length) {
-        err.textContent = missing.join('と') + 'をご記入ください。';
+        err.textContent = missing.join('、') + 'をご記入ください。';
         err.hidden = false;
         (document.getElementById(missing[0] === 'お名前' ? 'f-name' : 'f-mail')).focus();
         return;
