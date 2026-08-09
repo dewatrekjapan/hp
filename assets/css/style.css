@@ -296,6 +296,43 @@ section[id]{scroll-margin-top:76px}
 .contact .btn-lg{border-color:rgba(246,244,239,.7);color:var(--paper)}
 .contact .btn-lg:hover{background:var(--paper);color:var(--ink)}
 
+/* 問い合わせフォーム */
+.cform{
+  border:1px solid rgba(255,255,255,.22);padding:clamp(22px,3vw,34px);
+  margin-bottom:clamp(24px,3vw,34px);text-align:left;
+}
+.cform-k{margin:0 0 20px;font-size:12.5px;letter-spacing:.1em;color:#9BB8A8}
+.cform-row{margin-bottom:18px}
+.cform-2{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+.cform label{display:block;font-size:12.5px;color:rgba(246,244,239,.8);margin-bottom:7px;letter-spacing:.04em}
+.cform label em{
+  font-style:normal;font-size:10.5px;margin-left:8px;padding:1px 7px;border-radius:2px;
+  background:rgba(255,255,255,.16);color:var(--paper);letter-spacing:.06em;
+}
+.cform input,.cform select,.cform textarea{
+  width:100%;font-family:var(--sans);font-size:15px;color:var(--paper);line-height:1.7;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.28);border-radius:2px;
+  padding:12px 14px;transition:border-color .25s, background .25s;
+}
+.cform textarea{resize:vertical;min-height:120px}
+.cform input:focus,.cform select:focus,.cform textarea:focus{
+  outline:none;border-color:var(--paper);background:rgba(255,255,255,.1);
+}
+.cform input::placeholder,.cform textarea::placeholder{color:rgba(246,244,239,.4)}
+.cform select option{background:var(--ink);color:var(--paper)}
+.cform .btn-lg{margin-top:4px}
+.cform-err{
+  margin:0 0 14px;font-size:13px;color:#FFC7B8;
+  border-left:2px solid #FFC7B8;padding-left:12px;
+}
+.cform-note{margin:16px 0 0;font-size:12px;color:rgba(246,244,239,.6);line-height:1.85}
+.cform-note strong{background:none;border-bottom:1px solid rgba(255,255,255,.45);font-weight:500}
+.cform-ok{
+  margin:16px 0 0;font-size:13.5px;color:var(--paper);
+  border:1px solid rgba(255,255,255,.35);padding:14px 16px;line-height:1.85;
+}
+@media (max-width:640px){ .cform-2{grid-template-columns:1fr} }
+
 /* メールソフトが無い環境でも行き止まりにならないよう、宛先を必ず文字で出す */
 .mailbox{
   border:1px solid rgba(255,255,255,.22);padding:clamp(20px,2.4vw,28px);

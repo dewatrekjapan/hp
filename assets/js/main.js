@@ -128,6 +128,76 @@
     });
   });
 
+  /* 問い合わせフォーム
+     ------------------------------------------------------------------
+     ★FORM_ENDPOINT を空のままにしてある間は、サーバへは送らず
+       「メールソフトへ引き渡す＋内容をクリップボードにコピー」で動く。
+       Formspree 等に登録したら、下の1行に送信先URLを入れるだけで本当の送信になる。
+       例: var FORM_ENDPOINT = 'https://formspree.io/f/xxxxxxxx';
+     ------------------------------------------------------------------ */
+  var FORM_ENDPOINT = '';
+  var MAIL_TO = 'dewatrek.japan@gmail.com';
+
+  var form = document.getElementById('cform');
+  if (form) {
+    var err = document.getElementById('cform-err');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = function (id) { return (document.getElementById(id).value || '').trim(); };
+      var name = v('f-name'), mail = v('f-mail'), body = v('f-body');
+
+      var missing = [];
+      if (!name) missing.push('お名前');
+      if (!mail || mail.indexOf('@') < 1) missing.push('ご返信先メールアドレス');
+      if (!body) missing.push('ご相談内容');
+      if (missing.length) {
+        err.textContent = missing.join('と') + 'をご記入ください。';
+        err.hidden = false;
+        (document.getElementById(missing[0] === 'お名前' ? 'f-name' : 'f-mail')).focus();
+        return;
+      }
+      err.hidden = true;
+
+      var text =
+        '【ご相談の種類】' + v('f-type') + '\n' +
+        '【お名前】' + name + '\n' +
+        '【会社名・屋号】' + (v('f-org') || '（なし）') + '\n' +
+        '【ご返信先】' + mail + '\n\n' +
+        '【ご相談内容】\n' + body + '\n';
+
+      var finish = function (msg) {
+        var ok = form.querySelector('.cform-ok');
+        if (!ok) { ok = document.createElement('p'); ok.className = 'cform-ok'; form.appendChild(ok); }
+        ok.textContent = msg;
+      };
+
+      if (FORM_ENDPOINT) {
+        fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: v('f-type'), name: name, org: v('f-org'), email: mail, message: body })
+        }).then(function (r) {
+          if (!r.ok) throw new Error('ng');
+          form.reset();
+          finish('送信しました。ご連絡ありがとうございます。追ってご返信します。');
+        }).catch(function () {
+          err.textContent = '送信できませんでした。お手数ですが ' + MAIL_TO + ' 宛にお送りください。';
+          err.hidden = false;
+        });
+        return;
+      }
+
+      /* 送信先が未設定のあいだ：内容をコピーしてメールソフトへ引き渡す */
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(function () {});
+      }
+      window.location.href = 'mailto:' + MAIL_TO +
+        '?subject=' + encodeURIComponent('お問い合わせ（' + v('f-type') + '）') +
+        '&body=' + encodeURIComponent(text);
+      finish('入力内容をクリップボードにコピーしました。メールソフトが開かない場合は、下のアドレス宛に貼り付けてお送りください。');
+    });
+  }
+
   /* スクロールで静かに表示 */
   var items = document.querySelectorAll('.fade');
   if (reduce || !('IntersectionObserver' in window)) {

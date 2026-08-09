@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500&family=Noto+Sans+JP:wght@400;500&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=20260807h">
+<link rel="stylesheet" href="assets/css/style.css?v=20260807i">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -251,8 +251,43 @@
         <li><span>借りたい</span><a data-mail="rent" href="mailto:dewatrek.japan@gmail.com?subject=%E5%85%A5%E5%B1%85%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">鶴岡・酒田の空き状況を聞く<span aria-hidden="true">→</span></a></li>
         <li><span>業務のこと</span><a data-mail="biz" href="mailto:dewatrek.japan@gmail.com?subject=%E6%A5%AD%E5%8B%99%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87">経営・業務改善・ホームページ制作について相談する<span aria-hidden="true">→</span></a></li>
       </ul>
+      <form class="cform fade" id="cform" novalidate>
+        <p class="cform-k">フォームからお送りいただくこともできます</p>
+        <div class="cform-row">
+          <label for="f-type">ご相談の種類</label>
+          <select id="f-type" name="type">
+            <option>使っていない建物のこと</option>
+            <option>鶴岡・酒田で借りたい</option>
+            <option>経営・業務改善（リスク管理・内部統制・AI）</option>
+            <option>ホームページ制作</option>
+            <option>その他</option>
+          </select>
+        </div>
+        <div class="cform-2">
+          <div class="cform-row">
+            <label for="f-name">お名前 <em>必須</em></label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="cform-row">
+            <label for="f-org">会社名・屋号</label>
+            <input id="f-org" name="org" type="text" autocomplete="organization">
+          </div>
+        </div>
+        <div class="cform-row">
+          <label for="f-mail">ご返信先メールアドレス <em>必須</em></label>
+          <input id="f-mail" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="cform-row">
+          <label for="f-body">ご相談内容 <em>必須</em></label>
+          <textarea id="f-body" name="message" rows="6" required placeholder="所在地（市町村まで）、築年、いま困っていることなど。分かる範囲で結構です。"></textarea>
+        </div>
+        <p class="cform-err" id="cform-err" role="alert" hidden></p>
+        <button class="btn btn-lg" type="submit">送信する<span aria-hidden="true">→</span></button>
+        <p class="cform-note">送信すると、入力内容がメールソフトに引き渡されます。あわせて<strong>内容をクリップボードにコピー</strong>しますので、メールソフトが開かない場合は下のアドレス宛に貼り付けてお送りください。</p>
+      </form>
+
       <div class="mailbox fade">
-        <p class="mailbox-k">ボタンを押してもメールが開かないとき（パソコンにメールソフトが無い場合など）は、こちらのアドレス宛にお送りください。</p>
+        <p class="mailbox-k">フォームを使わずに、直接メールいただいても構いません。</p>
         <p class="mailbox-a"><span>dewatrek.japan@gmail.com</span><button type="button" class="copy" data-copy="dewatrek.japan@gmail.com">コピー</button></p>
       </div>
       <p class="note fade">初回のご相談・お見積りは無料です。営業のご連絡はご遠慮ください。</p>
@@ -277,6 +312,6 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=20260807h"></script>
+<script src="assets/js/main.js?v=20260807i"></script>
 </body>
 </html>
