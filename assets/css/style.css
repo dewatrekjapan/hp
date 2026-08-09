@@ -93,18 +93,15 @@ strong{font-weight:500;background:linear-gradient(transparent 68%, #E3E9E3 68%)}
   font-family:var(--sans);font-size:11px;letter-spacing:.08em;line-height:1;
   padding:7px 9px;white-space:nowrap;transition:background .25s var(--ease), color .25s var(--ease);
 }
-.langs a{opacity:.62}
-.langs a:hover{opacity:1;background:rgba(128,128,128,.18)}
-.langs [aria-current]{background:currentColor;opacity:1}
-.langs [aria-current]::selection{background:none}
-/* 現在の言語は反転表示。文字色は背景と入れ替える */
-.hdr .langs [aria-current]{color:transparent}
-.hdr .langs [aria-current]{
-  background:currentColor;
-  -webkit-text-fill-color:var(--ink);
+.langs a{opacity:.6}
+.langs a:hover{opacity:1;background:color-mix(in srgb, currentColor 18%, transparent)}
+/* 現在の言語。色を反転させると背景色の切り替えで消えることがあるため、
+   薄い塗りと太字だけで示す（明るい背景でも暗い背景でも確実に読める） */
+.langs [aria-current]{
+  opacity:1;font-weight:500;
+  background:color-mix(in srgb, currentColor 22%, transparent);
 }
-.hdr.stuck .langs [aria-current]{-webkit-text-fill-color:var(--paper)}
-.langs a + a, .langs span + a{border-left:1px solid currentColor}
+.langs > * + *{border-left:1px solid currentColor}
 @media (max-width:900px){ .langs{margin-right:4px} }
 @media (max-width:400px){ .langs > *{padding:6px 7px;font-size:10.5px} }
 .nav .cta-sm{
