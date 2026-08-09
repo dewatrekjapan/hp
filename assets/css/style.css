@@ -105,7 +105,8 @@ strong{font-weight:500;background:linear-gradient(transparent 68%, #E3E9E3 68%)}
 }
 .hdr.stuck .langs [aria-current]{-webkit-text-fill-color:var(--paper)}
 .langs a + a, .langs span + a{border-left:1px solid currentColor}
-@media (max-width:900px){ .langs{margin-left:0;margin-right:6px} }
+@media (max-width:900px){ .langs{margin-right:4px} }
+@media (max-width:400px){ .langs > *{padding:6px 7px;font-size:10.5px} }
 .nav .cta-sm{
   border:1px solid currentColor;border-radius:2px;padding:8px 16px;opacity:1;font-size:12.5px;
   transition:background .3s var(--ease), color .3s var(--ease);
