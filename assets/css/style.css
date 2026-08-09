@@ -59,7 +59,15 @@ strong{font-weight:500;background:linear-gradient(transparent 68%, #E3E9E3 68%)}
   border-bottom-color:var(--line);color:var(--ink);
 }
 .hdr-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px}
-.brand{font-family:var(--serif);font-size:19px;letter-spacing:.04em;white-space:nowrap}
+.brand{
+  font-family:var(--serif);font-size:19px;letter-spacing:.04em;white-space:nowrap;
+  display:flex;align-items:center;gap:11px;
+}
+.bmark{display:flex;flex:0 0 auto}
+.bmark svg rect{fill:currentColor}
+.bmark svg path{fill:var(--ink)}
+.hdr.stuck .bmark svg path{fill:var(--paper)}
+@media (max-width:400px){ .brand{font-size:16px;gap:9px} .bmark svg{width:22px;height:22px} }
 .nav{display:flex;align-items:center;gap:clamp(14px,2.2vw,30px)}
 .nav a{font-size:13px;letter-spacing:.04em;opacity:.85;transition:opacity .25s}
 .nav a:hover{opacity:1}
