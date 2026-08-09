@@ -20,8 +20,15 @@
   --ease: cubic-bezier(.2,.7,.3,1);
 }
 
+/* ページ遷移をなめらかにする。対応していないブラウザは今までどおり切り替わるだけ。 */
+@view-transition { navigation: auto; }
+
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{
+  scroll-behavior:smooth;-webkit-text-size-adjust:100%;
+  /* 一部のAndroidが勝手に色を反転させるのを防ぐ（このサイトは明るい配色で設計している） */
+  color-scheme:light;
+}
 body{
   margin:0;background:var(--paper);color:var(--ink);
   font-family:var(--sans);font-size:15px;line-height:2;
@@ -30,8 +37,14 @@ body{
 }
 img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:none}
-h1,h2,h3{margin:0;font-weight:500;font-family:var(--serif);line-height:1.45;letter-spacing:.005em}
-p{margin:0 0 1.2em}
+h1,h2,h3{
+  margin:0;font-weight:500;font-family:var(--serif);line-height:1.45;letter-spacing:.005em;
+  /* 見出しの行の長さを自動でそろえ、日本語は文節で折り返す。
+     対応ブラウザでは手で <br> を入れなくてもきれいに割れる（保守が楽になる） */
+  text-wrap:balance;
+  word-break:auto-phrase;
+}
+p{margin:0 0 1.2em;text-wrap:pretty}
 p:last-child{margin-bottom:0}
 ul,ol{margin:0;padding:0;list-style:none}
 dl{margin:0}
@@ -71,6 +84,11 @@ strong{font-weight:500;background:linear-gradient(transparent 68%, #E3E9E3 68%)}
 .nav{display:flex;align-items:center;gap:clamp(14px,2.2vw,30px)}
 .nav a{font-size:13px;letter-spacing:.04em;opacity:.85;transition:opacity .25s}
 .nav a:hover{opacity:1}
+.nav .lang{
+  font-size:11.5px;letter-spacing:.12em;border:1px solid currentColor;border-radius:2px;
+  padding:5px 10px;opacity:.7;
+}
+.nav .lang:hover{opacity:1}
 .nav .cta-sm{
   border:1px solid currentColor;border-radius:2px;padding:8px 16px;opacity:1;font-size:12.5px;
   transition:background .3s var(--ease), color .3s var(--ease);
@@ -259,6 +277,23 @@ section[id]{scroll-margin-top:76px}
 .rep-n span{font-family:var(--sans);font-size:11.5px;letter-spacing:.1em;color:var(--ink-2)}
 .rep p{font-size:13.5px;color:var(--ink-2);line-height:1.95}
 .rep-roles{border-top:1px solid var(--line);padding-top:16px;margin-top:18px;font-size:12.5px}
+
+/* なぜ庄内なのか（Mission / Vision / Values） */
+.creed{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(32px,5vw,72px);align-items:start;margin-bottom:clamp(44px,6vw,72px)}
+.creed-body p{color:var(--ink-2);max-width:60ch}
+.creed-body .lead-xl{color:var(--ink)}
+.creed-body strong{color:var(--ink)}
+.creed-mv{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.mv{background:var(--paper);padding:clamp(24px,2.6vw,32px)}
+.mv-k{margin:0 0 12px;font-size:11px;letter-spacing:.2em;color:var(--accent)}
+.mv-t{margin:0;font-family:var(--serif);font-size:clamp(18px,1.9vw,22px);line-height:1.65}
+
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.values li{background:var(--paper);padding:clamp(24px,2.8vw,34px)}
+.v-n{margin:0 0 14px;font-size:11px;letter-spacing:.2em;color:var(--accent)}
+.values h3{font-size:19px;margin-bottom:12px}
+.values p{font-size:14px;color:var(--ink-2);line-height:1.95;margin:0}
+@media (max-width:1000px){.creed{grid-template-columns:1fr}.values{grid-template-columns:1fr}}
 
 /* 利用の流れ */
 .flow{
